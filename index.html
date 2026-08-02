@@ -23,7 +23,6 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Happy Friendship Day 2026">
-    <meta property="og:image" content="https://123anubhav.github.io/happy-friendship-day-2026/qwen/friend-ship-day.jpg">
 
     <!-- WhatsApp legacy image link fallback -->
     <link rel="image_src" href="https://123anubhav.github.io/happy-friendship-day-2026/friend-ship-day.jpg">
@@ -57,6 +56,29 @@
     <button class="mute" id="muteBtn" aria-label="Toggle sound">🔊</button>
     <button class="fab" id="fab" aria-label="Back to top">🎈</button>
     <div class="toast" id="toast" role="status"></div>
+
+    <!-- ============ SLEEK MUSIC FAB & AUDIO CONTROLLER DOCK ============ -->
+    <button class="music-fab" id="musicFab" aria-label="Toggle Music Player">🎵</button>
+    <div class="music-panel" id="musicPanel">
+        <div class="mp-top">
+            <span class="mp-tag">FD '26 RADIO ANTHEM 📻</span>
+            <button class="mp-close-btn" id="mpCloseBtn" aria-label="Minimize player">✕</button>
+        </div>
+        <div class="mp-title" id="mpTitle">Friendship Day 2026</div>
+        <div class="mp-scrubber-wrap">
+            <span class="mp-time" id="mpCurrentTime">0:00</span>
+            <input type="range" class="mp-range" id="mpScrubber" min="0" max="100" value="0" step="0.1">
+            <span class="mp-time" id="mpDuration">0:00</span>
+        </div>
+        <div class="mp-controls">
+            <button class="mp-ctrl-btn" id="mpRewindBtn" title="Rewind 10s">↺ 10s</button>
+            <button class="mp-ctrl-btn play-main" id="mpPlayBtn" title="Play or Pause">▶ PLAY</button>
+            <button class="mp-ctrl-btn" id="mpForwardBtn" title="Forward 10s">10s ↻</button>
+        </div>
+    </div>
+
+    <!-- Theme MP3 Audio Player -->
+    <audio id="themeAudio" src="friendship-day-2026.mp3" preload="auto" loop></audio>
 
     <div class="ticker" aria-hidden="true">
         <div class="tk" id="tk1"></div>
@@ -126,6 +148,11 @@
                         <div class="spk"></div>
                         <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
                         <div class="spk"></div>
+                    </div>
+                    <div class="box-scrubber-row">
+                        <span id="boxCurrentTime">0:00</span>
+                        <input type="range" class="box-scrubber" id="boxScrubber" min="0" max="100" value="0" step="0.1">
+                        <span id="boxDuration">0:00</span>
                     </div>
                     <div class="box-ctrl">
                         <button class="pbtn" id="prevBtn" aria-label="Previous station">⏮</button>

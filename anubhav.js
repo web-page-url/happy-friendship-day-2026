@@ -260,27 +260,46 @@
             fx.burst(r.left + r.width / 2, r.top + r.height / 2, { n: 26, power: 8 }); snd.chime();
         }, { passive: true });
 
-        /* ===== BOOMBOX AUDIO TRACKS (WARM MELODIC HARMONIES) ===== */
+        /* ===== BOOMBOX & SLEEK AUDIO CONTROLLER (MP3 + SYNTH ENGINE) ===== */
         const box = $('#box'), playBtn = $('#playBtn'), trackTitle = $('#trackTitle');
+        const themeAudio = $('#themeAudio'), musicFab = $('#musicFab'), musicPanel = $('#musicPanel'), mpCloseBtn = $('#mpCloseBtn');
+        const mpPlayBtn = $('#mpPlayBtn'), mpScrubber = $('#mpScrubber'), mpCurrentTime = $('#mpCurrentTime'), mpDuration = $('#mpDuration');
+        const mpRewindBtn = $('#mpRewindBtn'), mpForwardBtn = $('#mpForwardBtn');
+        const boxScrubber = $('#boxScrubber'), boxCurrentTime = $('#boxCurrentTime'), boxDuration = $('#boxDuration');
+
         let playing = false, mStep = 0, mTimer = null, nextT = 0, currentTrack = 0;
+
+        const fmtTime = s => {
+            if (!s || isNaN(s)) return '0:00';
+            const m = Math.floor(s / 60), sec = Math.floor(s % 60);
+            return `${m}:${sec < 10 ? '0' : ''}${sec}`;
+        };
 
         const TRACKS = [
             {
-                title: 'TRACK 1: GOLDEN SUNSET 🌇',
+                title: 'TRACK 1: ★ OFFICIAL THEME SONG 📻',
+                type: 'mp3',
+                file: 'friendship-day-2026.mp3'
+            },
+            {
+                title: 'TRACK 2: GOLDEN SUNSET 🌇',
+                type: 'synth',
                 bpm: 110,
                 lead: [72, 74, 76, 79, 76, 74, 72, 67, 69, 72, 74, 76, 79, 81, 79, 76],
                 chord: [48, 0, 52, 0, 55, 0, 48, 0, 45, 0, 48, 0, 52, 0, 45, 0],
                 drums: ['k', '', 's', '', 'k', 'k', 's', '', 'k', '', 's', '', 'k', 'k', 's', '']
             },
             {
-                title: 'TRACK 2: LOFI BESTIES ☕',
+                title: 'TRACK 3: LOFI BESTIES ☕',
+                type: 'synth',
                 bpm: 86,
                 lead: [64, 0, 67, 71, 69, 0, 67, 64, 62, 0, 65, 69, 67, 0, 64, 60],
                 chord: [48, 52, 55, 0, 45, 48, 52, 0, 41, 45, 48, 0, 43, 47, 50, 0],
                 drums: ['k', '', '', '', 's', '', '', '', 'k', '', '', 'k', 's', '', '', '']
             },
             {
-                title: 'TRACK 3: BLOCK PARTY BEATS 🕺',
+                title: 'TRACK 4: BLOCK PARTY BEATS 🕺',
+                type: 'synth',
                 bpm: 124,
                 lead: [76, 76, 79, 76, 72, 74, 76, 0, 79, 79, 81, 79, 76, 74, 72, 0],
                 chord: [60, 0, 64, 0, 57, 0, 60, 0, 55, 0, 59, 0, 60, 0, 64, 0],
@@ -293,14 +312,15 @@
         function sched() {
             const cc = snd.ctx; if (!cc) return;
             const trk = TRACKS[currentTrack];
+            if (trk.type !== 'synth') return;
             const stepDur = 60 / trk.bpm / 4;
 
             while (nextT < cc.currentTime + .25) {
                 const s = mStep % 16;
-                if (trk.lead[s]) {
+                if (trk.lead && trk.lead[s]) {
                     snd.noteAt(freq(trk.lead[s]), stepDur * 1.5, 'sine', 0.08, nextT, 1400);
                 }
-                if (trk.chord[s]) {
+                if (trk.chord && trk.chord[s]) {
                     snd.noteAt(freq(trk.chord[s]), stepDur * 2.2, 'triangle', 0.06, nextT, 700);
                 }
                 if (trk.drums && trk.drums[s]) {
@@ -310,24 +330,141 @@
             }
         }
 
-        playBtn.addEventListener('click', e => {
-            e.stopPropagation(); playing = !playing; box.classList.toggle('playing', playing);
+        function playCurrentTrack() {
+            const trk = TRACKS[currentTrack];
+            if (box) box.classList.toggle('playing', playing);
+            if (musicFab) musicFab.classList.toggle('playing', playing);
+
             if (playing) {
-                snd.ensure(); nextT = snd.ctx.currentTime + .06; mStep = 0;
-                mTimer = setInterval(sched, 90); playBtn.textContent = '❚❚ PAUSE';
-                toast('Party mode: ON 🎶'); snd.chime();
+                if (trk.type === 'mp3') {
+                    clearInterval(mTimer);
+                    if (themeAudio) {
+                        themeAudio.volume = 1.0;
+                        const p = themeAudio.play();
+                        if (p !== undefined) {
+                            p.then(() => {
+                                toast('Playing Theme Song: Friendship Day 2026 🎵');
+                            }).catch(err => {
+                                console.log('Audio play blocked:', err);
+                                toast('Tap Play again to listen to Theme Song 🎵');
+                            });
+                        }
+                    }
+                    if (playBtn) playBtn.textContent = '❚❚ PAUSE';
+                    if (mpPlayBtn) mpPlayBtn.textContent = '❚❚ PAUSE';
+                } else {
+                    if (themeAudio) themeAudio.pause();
+                    snd.ensure(); nextT = snd.ctx.currentTime + .06; mStep = 0;
+                    mTimer = setInterval(sched, 90);
+                    if (playBtn) playBtn.textContent = '❚❚ PAUSE';
+                    if (mpPlayBtn) mpPlayBtn.textContent = '❚❚ PAUSE';
+                    toast('Playing Station: ' + trk.title + ' 🎶');
+                }
             } else {
-                clearInterval(mTimer); playBtn.textContent = '▶ PLAY';
+                if (themeAudio) themeAudio.pause();
+                clearInterval(mTimer);
+                if (playBtn) playBtn.textContent = '▶ PLAY';
+                if (mpPlayBtn) mpPlayBtn.textContent = '▶ PLAY';
+            }
+        }
+
+        /* Music FAB & Panel Hide/Show Toggle */
+        musicFab?.addEventListener('click', e => {
+            e.stopPropagation();
+            musicPanel?.classList.toggle('open');
+        });
+
+        mpCloseBtn?.addEventListener('click', e => {
+            e.stopPropagation();
+            musicPanel?.classList.remove('open');
+        });
+
+        playBtn?.addEventListener('click', e => {
+            e.stopPropagation(); playing = !playing;
+            playCurrentTrack();
+        });
+
+        mpPlayBtn?.addEventListener('click', e => {
+            e.stopPropagation();
+            if (currentTrack !== 0) {
+                currentTrack = 0;
+                if (trackTitle) trackTitle.textContent = TRACKS[0].title;
+            }
+            playing = !playing;
+            playCurrentTrack();
+        });
+
+        mpRewindBtn?.addEventListener('click', e => {
+            e.stopPropagation();
+            if (themeAudio && !isNaN(themeAudio.duration)) {
+                themeAudio.currentTime = Math.max(0, themeAudio.currentTime - 10);
+                toast('Rewound 10s ↺');
             }
         });
 
-        $('#prevBtn').addEventListener('click', e => {
-            e.stopPropagation(); currentTrack = (currentTrack - 1 + TRACKS.length) % TRACKS.length;
-            trackTitle.textContent = TRACKS[currentTrack].title; snd.pop(); toast('Switched station 📻');
+        mpForwardBtn?.addEventListener('click', e => {
+            e.stopPropagation();
+            if (themeAudio && !isNaN(themeAudio.duration)) {
+                themeAudio.currentTime = Math.min(themeAudio.duration, themeAudio.currentTime + 10);
+                toast('Forward 10s ↻');
+            }
         });
-        $('#nextBtn').addEventListener('click', e => {
-            e.stopPropagation(); currentTrack = (currentTrack + 1) % TRACKS.length;
-            trackTitle.textContent = TRACKS[currentTrack].title; snd.pop(); toast('Switched station 📻');
+
+        /* Audio Timeupdate Scrubber Handler */
+        if (themeAudio) {
+            themeAudio.addEventListener('timeupdate', () => {
+                if (isNaN(themeAudio.duration) || !themeAudio.duration) return;
+                const pct = (themeAudio.currentTime / themeAudio.duration) * 100;
+                const curStr = fmtTime(themeAudio.currentTime);
+                const durStr = fmtTime(themeAudio.duration);
+
+                if (mpScrubber) mpScrubber.value = pct;
+                if (boxScrubber) boxScrubber.value = pct;
+
+                if (mpCurrentTime) mpCurrentTime.textContent = curStr;
+                if (mpDuration) mpDuration.textContent = durStr;
+                if (boxCurrentTime) boxCurrentTime.textContent = curStr;
+                if (boxDuration) boxDuration.textContent = durStr;
+            });
+
+            themeAudio.addEventListener('loadedmetadata', () => {
+                const durStr = fmtTime(themeAudio.duration);
+                if (mpDuration) mpDuration.textContent = durStr;
+                if (boxDuration) boxDuration.textContent = durStr;
+            });
+        }
+
+        /* Scrubber Seek Handlers */
+        mpScrubber?.addEventListener('input', e => {
+            if (themeAudio && !isNaN(themeAudio.duration)) {
+                themeAudio.currentTime = (e.target.value / 100) * themeAudio.duration;
+            }
+        });
+
+        boxScrubber?.addEventListener('input', e => {
+            if (themeAudio && !isNaN(themeAudio.duration)) {
+                themeAudio.currentTime = (e.target.value / 100) * themeAudio.duration;
+            }
+        });
+
+        $('#prevBtn')?.addEventListener('click', e => {
+            e.stopPropagation();
+            const wasPlaying = playing;
+            if (playing) { playing = false; playCurrentTrack(); }
+            currentTrack = (currentTrack - 1 + TRACKS.length) % TRACKS.length;
+            if (trackTitle) trackTitle.textContent = TRACKS[currentTrack].title;
+            snd.pop(); toast('Switched station 📻');
+            if (wasPlaying) { playing = true; playCurrentTrack(); }
+        });
+
+        $('#nextBtn')?.addEventListener('click', e => {
+            e.stopPropagation();
+            const wasPlaying = playing;
+            if (playing) { playing = false; playCurrentTrack(); }
+            currentTrack = (currentTrack + 1) % TRACKS.length;
+            if (trackTitle) trackTitle.textContent = TRACKS[currentTrack].title;
+            snd.pop(); toast('Switched station 📻');
+            if (wasPlaying) { playing = true; playCurrentTrack(); }
         });
 
         setInterval(() => {
