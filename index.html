@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#12283F">
+    <title>Friendship Day '26 — The Block Party</title>
+    <meta name="description"
+        content="You're invited to Friendship Day 2026! Bring your bestie, string bracelets, scratch fortunes, and claim your VIP Pass.">
+
+    <!-- Open Graph / WhatsApp / Facebook Link Preview Thumbnail -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Happy Friendship Day 2026">
+    <meta property="og:url" content="https://123anubhav.github.io/happy-friendship-day-2026/">
+    <meta property="og:title" content="Happy Friendship Day 2026! 💛 Block Party & VIP Pass">
+    <meta property="og:description"
+        content="You're invited to Friendship Day 2026! Bring your bestie, string bracelets, scratch fortunes, and claim your VIP Pass.">
+    <meta property="og:image" content="https://123anubhav.github.io/happy-friendship-day-2026/friend-ship-day.jpg">
+    <meta property="og:image:secure_url"
+        content="https://123anubhav.github.io/happy-friendship-day-2026/friend-ship-day.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Happy Friendship Day 2026">
+    <meta property="og:image" content="https://123anubhav.github.io/happy-friendship-day-2026/qwen/friend-ship-day.jpg">
+
+    <!-- WhatsApp legacy image link fallback -->
+    <link rel="image_src" href="https://123anubhav.github.io/happy-friendship-day-2026/friend-ship-day.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://123anubhav.github.io/happy-friendship-day-2026/">
+    <meta name="twitter:title" content="Happy Friendship Day 2026! 💛 Block Party & VIP Pass">
+    <meta name="twitter:description"
+        content="You're invited to Friendship Day 2026! Bring your bestie, string bracelets, scratch fortunes, and claim your VIP Pass.">
+    <meta name="twitter:image" content="https://123anubhav.github.io/happy-friendship-day-2026/friend-ship-day.jpg">
+
+    <!-- Favicon & Apple Touch Icon -->
+    <link rel="icon" type="image/jpeg"
+        href="https://123anubhav.github.io/happy-friendship-day-2026/friend-ship-day.jpg">
+    <link rel="shortcut icon" type="image/jpeg" href="friend-ship-day.jpg">
+    <link rel="apple-touch-icon" href="https://123anubhav.github.io/happy-friendship-day-2026/friend-ship-day.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600;700&family=Outfit:wght@400;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="anubhav.css">
+</head>
+
+<body>
+
+    <div class="grain" aria-hidden="true"></div>
+    <canvas id="fx" aria-hidden="true"></canvas>
+    <div class="progress" aria-hidden="true"><i id="pbar"></i></div>
+    <button class="mute" id="muteBtn" aria-label="Toggle sound">🔊</button>
+    <button class="fab" id="fab" aria-label="Back to top">🎈</button>
+    <div class="toast" id="toast" role="status"></div>
+
+    <div class="ticker" aria-hidden="true">
+        <div class="tk" id="tk1"></div>
+    </div>
+
+    <!-- ============ NAVIGATION BAR SLIDER ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="wrap nav-wrap">
+            <a href="#top" class="nav-logo">🎉 FD '26</a>
+            <div class="nav-slider-wrap">
+                <button class="nav-arrow" id="navPrev" aria-label="Previous sections">‹</button>
+                <div class="nav-links" id="navLinks">
+                    <a href="#top" class="nav-link active">🏠 Home</a>
+                    <a href="#countdown" class="nav-link">⏳ Countdown</a>
+                    <a href="#crew" class="nav-link">👥 Crew</a>
+                    <a href="#beads" class="nav-link">📿 Bead Bar</a>
+                    <a href="#hugs" class="nav-link">🫂 Hugs</a>
+                    <a href="#wall" class="nav-link">📌 Wall of Love</a>
+                    <a href="#fortune" class="nav-link">🔮 Fortune</a>
+                    <a href="#vip" class="nav-link">🎫 VIP Pass</a>
+                </div>
+                <button class="nav-arrow" id="navNext" aria-label="Next sections">›</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============ OPENING HERO ============ -->
+    <header class="open band" id="top">
+        <div class="bunting" id="bunting" aria-hidden="true"></div>
+        <span class="shoot" aria-hidden="true"></span>
+        <div class="sun" id="sun" role="button" aria-label="Tap the sun for sunshine burst"></div>
+
+        <div class="wrap open-grid">
+            <div>
+                <p class="overline">★ You're invited to the ★</p>
+                <h1 class="mega">
+                    <span class="l1">Friendship</span>
+                    <span class="l2">Day <span class="y26">'26</span>
+                        <svg class="starbadge" viewBox="0 0 100 100" aria-hidden="true">
+                            <polygon points="50,0 61,35 98,25 70,50 98,75 61,65 50,100 39,65 2,75 30,50 2,25 39,35"
+                                fill="#FF6B4A" stroke="#263143" stroke-width="3" />
+                            <text x="50" y="46" text-anchor="middle" font-family="Anton" font-size="17"
+                                fill="#FFF4E0">AUG</text>
+                            <text x="50" y="66" text-anchor="middle" font-family="Anton" font-size="17"
+                                fill="#FFF4E0">02</text>
+                        </svg>
+                    </span>
+                </h1>
+                <p class="lede">One golden evening a year, we throw it down for the humans who know your WiFi password
+                    <b>and</b> your worst stories. No gifts. Just vibes, snacks &amp; mandatory hugs.
+                </p>
+                <div class="chips">
+                    <span class="chip">📅 SUNDAY · AUG 02 · 2026</span>
+                    <span class="chip">🫶 <b id="hugCountTop">0</b>&nbsp;hugs worldwide</span>
+                </div>
+                <div class="cta-row">
+                    <a class="btn btn-gold" href="#vip">🎫 Claim VIP Pass</a>
+                    <a class="btn" href="#beads">📿 Hit the Bead Bar</a>
+                </div>
+                <p class="caveat note1">the party's this way ↓</p>
+            </div>
+
+            <div class="scene">
+                <div class="box" id="box">
+                    <div class="box-top"><span><i></i>BESTIE FM · 88.2</span><span>STEREO ★ HI-FI</span></div>
+                    <div class="box-face">
+                        <div class="spk"></div>
+                        <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                        <div class="spk"></div>
+                    </div>
+                    <div class="box-ctrl">
+                        <button class="pbtn" id="prevBtn" aria-label="Previous station">⏮</button>
+                        <button class="pbtn main" id="playBtn" aria-label="Play or pause the party synth audio">▶
+                            PLAY</button>
+                        <button class="pbtn" id="nextBtn" aria-label="Next station">⏭</button>
+                    </div>
+                    <div class="track-title" id="trackTitle">TRACK: RETRO SUNSET</div>
+                </div>
+                <p class="caveat note2">press play — synth beats on ↑</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============ COUNTDOWN ============ -->
+    <section class="band count-band" id="countdown">
+        <div class="wrap">
+            <span class="klabel rv">№ 01 · Tick Tock</span>
+            <h2 class="ptitle rv" style="--d:.05s">The Countdown<br>Is On</h2>
+            <p class="sub rv" style="--d:.1s">Every second brings the block party closer. Gather your people.</p>
+            <div class="clock rv" id="clock" style="--d:.2s" aria-live="off"></div>
+            <div class="party" id="party">
+                <h3>🎉 It's today — party's live 🎉</h3>
+                <p>The countdown hit zero. Go squeeze your humans! 🫂</p>
+                <button class="btn btn-coral" id="partyBtn">Pop the confetti 🎊</button>
+            </div>
+            <p class="cdnote rv" id="cdnote" style="--d:.3s">Sunday, August 2nd, 2026 — golden hour, obviously 🌇</p>
+        </div>
+    </section>
+
+    <div class="zig" style="--prev:#FFC94B;--cur:#FF6B4A"></div>
+
+    <!-- ============ CREW 3D FLIP ============ -->
+    <section class="band crew-band" id="crew">
+        <div class="wrap">
+            <span class="klabel rv">№ 02 · The Lineup</span>
+            <h2 class="ptitle rv" style="--d:.05s">Every Crew Has<br>These Eight</h2>
+            <p class="sub rv" style="--d:.1s">Tap any card to flip it over and reveal their secret superpower &amp;
+                weakness!</p>
+            <div class="crew-filters rv" style="--d:.15s">
+                <button class="filter-btn active" data-filter="all">All Vibes</button>
+                <button class="filter-btn" data-filter="chaos">Troublemakers</button>
+                <button class="filter-btn" data-filter="support">Emotional Support</button>
+            </div>
+        </div>
+        <div class="crew-scroll rv" id="crewScroll" style="--d:.2s"></div>
+        <p class="ring-hint">⟵ swipe or tap card to flip ⟶</p>
+    </section>
+
+    <div class="zig" style="--prev:#FF6B4A;--cur:#FFF4E0"></div>
+
+    <!-- ============ BEAD BAR ============ -->
+    <section class="band bead-band" id="beads">
+        <div class="wrap">
+            <span class="klabel rv">№ 03 · Handmade</span>
+            <h2 class="ptitle rv" style="--d:.05s">The Bead Bar</h2>
+            <p class="sub rv" style="--d:.1s">String a bracelet with custom colors, letter beads, and charms! Tap to
+                place beads, then copy or download the masterpiece.</p>
+
+            <div class="bead-tabs rv" style="--d:.15s">
+                <button class="tab-btn active" id="tabColors">🎨 Colors</button>
+                <button class="tab-btn" id="tabLetters">🔤 Letters (A-Z)</button>
+                <button class="tab-btn" id="tabCharms">✨ Charms</button>
+            </div>
+
+            <div class="beadbar rv" id="palette" style="--d:.2s"></div>
+
+            <div class="board rv" id="board" style="--d:.3s"><span class="empty">Pick a color/letter, then tap here to
+                    start stringing ✨</span></div>
+
+            <div class="btools rv" style="--d:.4s">
+                <button class="btn" id="bUndo">↩️ Undo</button>
+                <button class="btn" id="bClear">🗑️ Clear</button>
+                <button class="btn btn-gold" id="bRandom">🎲 Surprise Me</button>
+                <button class="btn btn-pink" id="bDownloadBeads">📸 Save Image</button>
+                <button class="btn btn-coral" id="bSend">📩 Copy for Bestie</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="zig" style="--prev:#FFF4E0;--cur:#17A398"></div>
+
+    <!-- ============ HUG CHAIN ============ -->
+    <section class="band hug-band" id="hugs">
+        <div class="wrap">
+            <span class="klabel rv">№ 04 · Chain Reaction</span>
+            <h2 class="ptitle rv" style="--d:.05s">The Global<br>Hug Chain</h2>
+            <p class="sub rv" style="--d:.1s">Press and <b>hold</b> the sun to charge a hug with rising pitch! Longer
+                hold = bigger explosion. Science says* hugs over 20 seconds count double. <em>(*our science.)</em></p>
+            <div class="hugzone rv" style="--d:.2s">
+                <div class="hugwrap">
+                    <div class="hugring" id="hugBtn" role="button" tabindex="0" aria-label="Hold to charge a hug">
+                        <div class="hugcore"><span class="he" id="hugEmoji">🫂</span><span class="hl2"
+                                id="hugLabel">hold me…</span></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="hugbig" id="hugBig">0</div>
+                    <div class="hugcap">hugs sent around the world 🌍</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="zig" style="--prev:#17A398;--cur:#E8D3B5"></div>
+
+    <!-- ============ WALL OF LOVE (CORKBOARD) ============ -->
+    <section class="band wall-band" id="wall">
+        <div class="wrap">
+            <span class="klabel rv">№ 05 · Sticky Notes</span>
+            <h2 class="ptitle rv" style="--d:.05s">The Wall of Love</h2>
+            <p class="sub rv" style="--d:.1s">Leave a public note for your best friend on the block party corkboard.</p>
+
+            <div class="note-form rv" style="--d:.15s">
+                <div class="field" style="margin-bottom:.8rem">
+                    <label for="noteAuthorInput">Your Name</label>
+                    <input id="noteAuthorInput" maxlength="24" placeholder="e.g. Anubhav" autocomplete="off">
+                </div>
+                <div class="field">
+                    <label for="noteInput">Your Memory / Note</label>
+                    <input id="noteInput" maxlength="90" placeholder="e.g. Thanks for buying me fries at 2 AM! ❤️"
+                        autocomplete="off">
+                </div>
+                <div
+                    style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.8rem;">
+                    <div class="color-pickers" id="noteColors">
+                        <span class="color-dot active" style="background:#FFF4E0" data-c="#FFF4E0"></span>
+                        <span class="color-dot" style="background:#FFC94B" data-c="#FFC94B"></span>
+                        <span class="color-dot" style="background:#FF6584" data-c="#FF6584"></span>
+                        <span class="color-dot" style="background:#17A398" data-c="#17A398"></span>
+                    </div>
+                    <button class="btn btn-gold" id="addNoteBtn">📌 Pin to Board</button>
+                </div>
+            </div>
+
+            <div class="corkboard rv" id="corkboard" style="--d:.25s"></div>
+        </div>
+    </section>
+
+    <div class="zig" style="--prev:#E8D3B5;--cur:#263143"></div>
+
+    <!-- ============ FORTUNE ============ -->
+    <section class="band fortune-band" id="fortune">
+        <div class="wrap" style="text-align:center">
+            <span class="klabel rv">№ 06 · Lucky You</span>
+            <h2 class="ptitle rv" style="--d:.05s">Scratch for<br>a Fortune</h2>
+            <p class="sub rv" style="--d:.1s" style="margin-left:auto;margin-right:auto">Rub the golden card to reveal
+                your prediction. Sound FX included!</p>
+
+            <div class="f-categories rv" style="--d:.15s">
+                <button class="filter-btn active" id="catComp">✨ Compliments</button>
+                <button class="filter-btn" id="catPred">🔮 Predictions</button>
+                <button class="filter-btn" id="catQuest">🎯 Quests</button>
+            </div>
+
+            <div class="scratch-wrap rv" id="scratchWrap" style="--d:.2s">
+                <p class="fortune" id="fortuneText"></p>
+                <canvas id="scratch"></canvas>
+            </div>
+            <button class="btn btn-gold newbtn" id="newFortune">🔄 Another Fortune</button>
+        </div>
+    </section>
+
+    <div class="zig" style="--prev:#263143;--cur:#FFC94B"></div>
+
+    <!-- ============ VIP PASS ============ -->
+    <section class="band vip-band" id="vip">
+        <div class="wrap">
+            <span class="klabel rv">№ 07 · All Access</span>
+            <h2 class="ptitle rv" style="--d:.05s">Print Your<br>Passes</h2>
+            <p class="sub rv" style="--d:.1s">Customize your duo badge, switch themes, and download a high-res image for
+                Instagram!</p>
+
+            <div class="fields rv" style="--d:.2s">
+                <div class="field">
+                    <label for="nameA">Your name</label>
+                    <input id="nameA" maxlength="18" placeholder="e.g. Riya" autocomplete="off">
+                </div>
+                <div class="field">
+                    <label for="nameB">Your +1</label>
+                    <input id="nameB" maxlength="18" placeholder="e.g. Virat" autocomplete="off">
+                </div>
+                <div class="field">
+                    <label for="passTitleSelect">Duo Role / Title</label>
+                    <select id="passTitleSelect">
+                        <option value="★ PARTNERS IN CRIME ★">★ PARTNERS IN CRIME ★</option>
+                        <option value="★ CHAOS TWINS ★">★ CHAOS TWINS ★</option>
+                        <option value="★ CHIEF GOSSIP OFFICERS ★">★ CHIEF GOSSIP OFFICERS ★</option>
+                        <option value="★ 3AM DEEP TALKERS ★">★ 3AM DEEP TALKERS ★</option>
+                        <option value="★ LATE NIGHT LEGENDS ★">★ LATE NIGHT LEGENDS ★</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="passThemeSelect">Pass Theme</label>
+                    <select id="passThemeSelect">
+                        <option value="cream">Golden Sunset 🌇</option>
+                        <option value="kraft">Retro Kraft 📜</option>
+                        <option value="neon">Cyber Neon ⚡</option>
+                        <option value="pink">Pink Velvet 🌸</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="pass rv" id="passCard" style="--d:.3s">
+                <div class="pass-top"><span class="hole"></span><span>FRIENDSHIP DAY '26</span><span>VIP PASS</span>
+                </div>
+                <div class="pass-body">
+                    <div class="all" id="passDuoTitle">★ PARTNERS IN CRIME ★</div>
+                    <div class="pass-names"><span id="passA">You</span> <span class="plus">+</span> <span
+                            id="passB">Your Bestie</span></div>
+                    <div class="pass-fine">Backstage · Group Chat · Snack Tent · Valid till 3026</div>
+                    <div class="barcode"></div>
+                </div>
+            </div>
+
+            <div class="sharebtns rv" style="--d:.4s">
+                <button class="btn btn-pink" id="downloadPassBtn">🖼️ Download Ticket PNG</button>
+                <button class="btn" id="copyBtn">📋 Copy Pass Text</button>
+                <button class="btn btn-teal" id="shareBtn">📤 Share</button>
+                <button class="btn btn-coral" id="waBtn">💬 WhatsApp</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wrap" style="padding-top:2.8rem">
+            <div class="fbig">See you at the party.</div>
+            <p>Mixed with 💛, 🍕 &amp; 3am inside jokes · Bestie Labs © 2026<br>No besties were left behind.</p>
+            <span class="femo" aria-hidden="true">🎉 🫶 🎶 🌇 🫂</span>
+        </div>
+        <div class="ticker foot" aria-hidden="true">
+            <div class="tk" id="tk2"></div>
+        </div>
+        <div class="bottom-credit">
+            Created with <span class="beating-heart" aria-hidden="true">❤️</span> by <strong>Anubhav</strong>
+        </div>
+    </footer>
+
+    <script src="anubhav.js" defer></script>
+</body>
+
+</html>
